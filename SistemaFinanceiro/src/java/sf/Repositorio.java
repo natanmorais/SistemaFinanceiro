@@ -13,7 +13,7 @@ public class Repositorio {
     public static void init(String user, String password) {
         try {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost/cliente", user, password);
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost/banco", user, password);
             System.out.println("OK");
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
@@ -38,22 +38,34 @@ public class Repositorio {
 
     public static Cliente criarConta(String nome, double saldo) {
         int numero = -1;
+        System.out.println("Na função!");
         try {
+            System.out.println("Entrou try");
             PreparedStatement p = connection.prepareStatement("SELECT max(numero) FROM cliente");
             ResultSet rs = p.executeQuery();
-            rs.next();
-            numero = rs.getInt(1) + 1;
+            System.out.println("passou execute");
+            if(rs.next()){
+                numero = rs.getInt(1) + 1;
+            } else {
+                numero = 1000;
+            }    
+            System.out.println("passou if else");
             Cliente c = new Cliente(numero, nome, saldo);
             p.close();
+            System.out.println("Codigo: " + numero);
             p = connection.prepareStatement("INSERT INTO cliente VALUES(?,?,?)");
             p.setInt(1, numero);
             p.setString(2, nome);
             p.setDouble(3, saldo);
-            if (p.execute()) {
+            p.executeUpdate();
+            //if (p.executeUpdate()) {
+                System.out.println("Entrou!");
                 return c;
-            }
+            //}
         } catch (Exception e) {
+            System.out.println("Entrou catch " + e.getMessage());
         }
+        System.out.println("Saindo com null");
         return null;
     }
 }

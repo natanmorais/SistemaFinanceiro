@@ -8,6 +8,7 @@ package sf;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,9 +33,21 @@ public class CreateAccount extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Repositorio.init("postgres", "senha");
         String nome = request.getParameter("nome");
-        double saldo = Double.parseDouble(request.getParameter("saldo"));        
+        double saldo = Double.parseDouble(request.getParameter("saldo"));   
+        System.out.println("Antes");
         Cliente c = Repositorio.criarConta(nome, saldo);
+        System.out.println("Depois");
+        String address = "/WEB-INF/CreateAccountResponse.jsp";
+        RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+        String resposta = "<p><h3>Parabéns por se tornar um cliente da ashaBank!</h3></p>"
+                + "<p>Seus dados cadastrados são:</p>"
+                + "<p>Número da Conta: " + c.getNumero() + "</p>"
+                + "<p>Nome: " + c.getNome() + "</p>"
+                + "<p>Saldo: " + c.getSaldo() + "</p>";
+        request.setAttribute("CreateAccountResponse", resposta);
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
