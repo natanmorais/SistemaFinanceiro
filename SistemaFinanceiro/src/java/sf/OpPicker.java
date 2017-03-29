@@ -1,3 +1,5 @@
+package sf;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,6 +8,7 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author tiago
  */
-public class Balance extends HttpServlet {
+public class OpPicker extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,18 +31,32 @@ public class Balance extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        String op = request.getParameter("operation");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Balance</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Balance at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            out.println(op);
+
+            String address = "";
+
+            switch (op) {
+                case "create-account":
+                    address = "/WEB-INF/createAccount.jsp";
+                    break;
+                case "balance":
+                    address = "/WEB-INF/Balance.jsp";
+                    break;
+                case "transfer":
+                    address = "/WEB-INF/Transfer.jsp";
+                    break;
+                case "withdraw":
+                    address = "/WEB-INF/Withdraw.jsp";
+                    break;
+                case "deposit":
+                    address = "/WEB-INF/Deposit.jsp";
+                    break;
+            }
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+            dispatcher.forward(request, response);
         }
     }
 

@@ -1,3 +1,5 @@
+package sf;
+
 public class Cliente {
 
     public int getNumero() {

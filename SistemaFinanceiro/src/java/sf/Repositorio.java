@@ -1,3 +1,4 @@
+package sf;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -31,6 +32,27 @@ public class Repositorio {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Cliente criarConta(String nome, double saldo) {
+        int numero = -1;
+        try {
+            PreparedStatement p = connection.prepareStatement("SELECT max(numero) FROM cliente");
+            ResultSet rs = p.executeQuery();
+            rs.next();
+            numero = rs.getInt(1) + 1;
+            Cliente c = new Cliente(numero, nome, saldo);
+            p.close();
+            p = connection.prepareStatement("INSERT INTO cliente VALUES(?,?,?)");
+            p.setInt(1, numero);
+            p.setString(2, nome);
+            p.setDouble(3, saldo);
+            if (p.execute()) {
+                return c;
+            }
+        } catch (Exception e) {
         }
         return null;
     }
