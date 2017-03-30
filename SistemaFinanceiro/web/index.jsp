@@ -26,7 +26,7 @@
                         <input name="operation" type="radio" value="balance"> Balance</input></br>
                         <input name="operation" type="radio" value="deposit"> Deposit</input></br>
                         <input name="operation" type="radio" value="transfer"> Transfer</input></br>
-                        <input name="operation" type="radio" value="balance"> Balance</input>
+                        <input name="operation" type="radio" value="withdraw"> Withdraw</input>
                     </div>
                     </br>
                     </br>

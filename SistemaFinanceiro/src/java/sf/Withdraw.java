@@ -8,6 +8,7 @@ package sf;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,19 +33,15 @@ public class Withdraw extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Withdraw</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Withdraw at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        int numero = Integer.parseInt(request.getParameter("numero"));
+        double valor = Double.parseDouble(request.getParameter("saldo"));
+        Cliente c = Repositorio.withdrawMoney(numero, valor);
+        String address = "/WEB-INF/WithdrawResponse.jsp";
+        RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+        String resposta = "<p><h3>A ashaBank espera que você aproveite seu dinheiro!</h3></p>"
+                + "<p>O valor de R$" + valor + " foi retirado da sua conta, Sr.(a) " + c.getNome();
+        request.setAttribute("WithdrawResponse", resposta);
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -9,9 +9,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Sistema Financeiro - Saque</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div class="container">
+            <header>
+                <h1>Saque</h1>
+            </header>
+            <div>
+                <form method="POST" action="Withdraw">
+                    <p>Insira o número da conta a qual o valor será retirado:</p>
+                    <p><input type="text" name="numero"/>
+                    <p>Qual o valor que deseja retirar?</p>
+                    <p><input type="text" name="saldo"/>
+                    <p><input type="submit" value="RETIRAR"></input></p>
+                </form>               
+            </div>
+        </div>
     </body>
 </html>
