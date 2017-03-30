@@ -17,7 +17,7 @@
     <body>
         <div class="container">
             <header>
-                <h1>Asha Bank</h1>
+                <h1>ashaBank</h1>
             </header>
             <div class="body">
                 <form action="OpPicker">

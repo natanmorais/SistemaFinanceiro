@@ -8,6 +8,7 @@ package sf;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,19 +31,14 @@ public class Balance extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Balance</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Balance at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        int numero = Integer.parseInt(request.getParameter("numero"));
+        Cliente c = Repositorio.getCliente(numero);
+        String address = "/WEB-INF/BalanceResponse.jsp";
+        RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+        String resposta = "<p><h3>Olá " + c.getNome() + ", ashaBank agradece sua visita</h3></p>"
+                + "<p>O saldo da sua conta é: " + c.getSaldo() + "</p>";
+        request.setAttribute("BalanceResponse", resposta);
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

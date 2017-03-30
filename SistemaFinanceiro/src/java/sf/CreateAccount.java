@@ -33,12 +33,11 @@ public class CreateAccount extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Repositorio.init("postgres", "senha");
         String nome = request.getParameter("nome");
         double saldo = Double.parseDouble(request.getParameter("saldo"));   
-        System.out.println("Antes");
+       //System.out.println("Antes");
         Cliente c = Repositorio.criarConta(nome, saldo);
-        System.out.println("Depois");
+        //System.out.println("Depois");
         String address = "/WEB-INF/CreateAccountResponse.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(address);
         String resposta = "<p><h3>Parabéns por se tornar um cliente da ashaBank!</h3></p>"

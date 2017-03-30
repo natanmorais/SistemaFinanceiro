@@ -9,9 +9,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Sistema Financeiro - Consultar Saldo</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div class="container">
+            <header>
+                <h1>Criar Conta</h1>
+            </header>
+            <div>
+                <form method="POST" action="Balance">
+                    <p>Insira o número da conta:</p>
+                    <p><input type="text" name="numero"/>
+                    <p><input type="submit" value="CONSULTAR"></input></p>
+                </form>               
+            </div>
+            
+        </div>
     </body>
 </html>

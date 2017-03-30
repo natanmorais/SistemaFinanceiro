@@ -24,7 +24,7 @@ public class Repositorio {
 
     public static Cliente getCliente(int numero) {
         try {
-            PreparedStatement p = connection.prepareStatement("SELECT * FROM cliente WHERE nro = ?");
+            PreparedStatement p = connection.prepareStatement("SELECT * FROM cliente WHERE numero = ?");
             p.setInt(1, numero);
             ResultSet rs = p.executeQuery();
             if (rs != null && rs.next()) {

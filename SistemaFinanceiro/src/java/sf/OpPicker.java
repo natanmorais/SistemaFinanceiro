@@ -5,7 +5,6 @@ package sf;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -31,6 +30,7 @@ public class OpPicker extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Repositorio.init("postgres", "senha");
         String op = request.getParameter("operation");
         try (PrintWriter out = response.getWriter()) {
             out.println(op);
