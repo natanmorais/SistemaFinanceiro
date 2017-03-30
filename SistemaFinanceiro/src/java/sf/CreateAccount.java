@@ -5,7 +5,6 @@ package sf;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -34,10 +33,16 @@ public class CreateAccount extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nome = request.getParameter("nome");
-        double saldo = Double.parseDouble("0" + request.getParameter("saldo"));   
-       //System.out.println("Antes");
+        double saldo = Double.parseDouble("0" + request.getParameter("saldo"));
+        //System.out.println("Antes");
+        if (nome == null || nome.trim().length() <= 0) {
+            String address = "/WEB-INF/ErrorPage.html";
+            RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+            dispatcher.forward(request, response);
+            return;
+        }
         Cliente c = Repositorio.criarConta(nome, saldo);
-        if (nome == null || nome.trim().length() <= 0 || c == null) {
+        if (c == null) {
             String address = "/WEB-INF/ErrorPage.html";
             RequestDispatcher dispatcher = request.getRequestDispatcher(address);
             dispatcher.forward(request, response);
