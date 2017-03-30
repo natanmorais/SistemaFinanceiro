@@ -31,9 +31,15 @@ public class Deposit extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int numero = Integer.parseInt(request.getParameter("numero"));
-        double valor = Double.parseDouble(request.getParameter("saldo"));
+        int numero = Integer.parseInt("0" + request.getParameter("numero"));
+        double valor = Double.parseDouble("0" + request.getParameter("saldo"));
         Cliente c = Repositorio.depositMoney(numero, valor);
+        if (c == null) {
+            String address = "/WEB-INF/ErrorPage.html";
+            RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+            dispatcher.forward(request, response);
+            return;
+        }
         String address = "/WEB-INF/DepositResponse.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(address);
         String resposta = "<p><h3>A ashaBank agradece seu depósito!</h3></p>"

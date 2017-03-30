@@ -22,7 +22,7 @@
             <div class="col-md-6 col-md-offset-3">
                 <form method="POST" action="Balance">
                     <p>Insira o número da conta:</p>
-                    <p><input class="uk-input"type="text" name="numero"/>
+                    <p><input id="numero" class="uk-input"type="text" name="numero"/>
                     <p><input class="uk-button uk-button-default uk-button-primary" type="submit" value="CONSULTAR"></input></p>
                 </form>               
             </div>

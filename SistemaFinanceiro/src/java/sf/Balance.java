@@ -5,7 +5,6 @@ package sf;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -31,8 +30,14 @@ public class Balance extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int numero = Integer.parseInt(request.getParameter("numero"));
+        int numero = Integer.parseInt("0" + request.getParameter("numero"));
         Cliente c = Repositorio.getCliente(numero);
+        if (c == null) {
+            String address = "/WEB-INF/ErrorPage.html";
+            RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+            dispatcher.forward(request, response);
+            return;
+        }
         String address = "/WEB-INF/BalanceResponse.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(address);
         String resposta = "<p><h3>Olá " + c.getNome() + ", ashaBank agradece sua visita</h3></p>"

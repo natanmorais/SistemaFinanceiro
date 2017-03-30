@@ -31,10 +31,16 @@ public class Transfer extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int numero1 = Integer.parseInt(request.getParameter("numero1"));
-        int numero2 = Integer.parseInt(request.getParameter("numero2"));
-        double valor = Double.parseDouble(request.getParameter("saldo"));
+        int numero1 = Integer.parseInt("0" + request.getParameter("numero1"));
+        int numero2 = Integer.parseInt("0" + request.getParameter("numero2"));
+        double valor = Double.parseDouble("0" + request.getParameter("saldo"));
         Cliente[] c = Repositorio.transferMoney(numero1, numero2, valor);
+        if (c == null || c[0] == null || c[1] == null) {
+            String address = "/WEB-INF/ErrorPage.html";
+            RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+            dispatcher.forward(request, response);
+            return;
+        }
         String address = "/WEB-INF/TransferResponse.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(address);
         String resposta = "<p><h3>Sua transferência foi executada!</h3></p>"

@@ -34,9 +34,15 @@ public class CreateAccount extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nome = request.getParameter("nome");
-        double saldo = Double.parseDouble(request.getParameter("saldo"));   
+        double saldo = Double.parseDouble("0" + request.getParameter("saldo"));   
        //System.out.println("Antes");
         Cliente c = Repositorio.criarConta(nome, saldo);
+        if (nome == null || nome.trim().length() <= 0 || c == null) {
+            String address = "/WEB-INF/ErrorPage.html";
+            RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+            dispatcher.forward(request, response);
+            return;
+        }
         //System.out.println("Depois");
         String address = "/WEB-INF/CreateAccountResponse.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(address);

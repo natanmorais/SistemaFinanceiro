@@ -33,9 +33,15 @@ public class Withdraw extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int numero = Integer.parseInt(request.getParameter("numero"));
-        double valor = Double.parseDouble(request.getParameter("saldo"));
+        int numero = Integer.parseInt("0" + request.getParameter("numero"));
+        double valor = Double.parseDouble("0" + request.getParameter("saldo"));
         Cliente c = Repositorio.withdrawMoney(numero, valor);
+        if (c == null) {
+            String address = "/WEB-INF/ErrorPage.html";
+            RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+            dispatcher.forward(request, response);
+            return;
+        }
         String address = "/WEB-INF/WithdrawResponse.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(address);
         String resposta = "<p><h3>A ashaBank espera que você aproveite seu dinheiro!</h3></p>"

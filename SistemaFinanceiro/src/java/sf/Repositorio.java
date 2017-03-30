@@ -38,8 +38,6 @@ public class Repositorio {
     }
 
     public static Cliente[] transferMoney(int envia, int recebe, double valor) {
-        //Fazer transferência, não sei como fazer transaction pra garantir que as 2 operações 
-        //ocorram ou não, de forma dependente.
         try {
             Cliente[] c = new Cliente[2];
             //Transaction
@@ -64,7 +62,7 @@ public class Repositorio {
             }
             p.close();
             p = connection.prepareStatement("SELECT * FROM cliente WHERE numero = ?");
-            p.setInt(1, envia);
+            p.setInt(1, recebe);
             rs = p.executeQuery();
             if (rs != null && rs.next()) {
                 c[1] = new Cliente(rs.getInt(1), rs.getString(2), rs.getDouble(3));
