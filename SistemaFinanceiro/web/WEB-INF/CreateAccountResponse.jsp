@@ -12,7 +12,7 @@
         <title>ashaBank</title>
     </head>
     <body>
-        <h1>${CreateAccountResponse}</h1>
+        <div>${CreateAccountResponse}</div>
         <a href="index.jsp">Voltar</a>
     </body>
 </html>

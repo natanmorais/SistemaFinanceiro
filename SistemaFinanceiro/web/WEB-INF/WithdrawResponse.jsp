@@ -13,6 +13,6 @@
     </head>
     <body>
         <h1>${WithdrawResponse}</h1>
-        <a href="index.jsp">Voltar</a>
+        <div><a href="index.jsp">Voltar</a></div>
     </body>
 </html>
