@@ -36,6 +36,13 @@ public class Repositorio {
         return null;
     }
     
+    public static Cliente[] transferMoney(int envia, int recebe, double valor){
+        //Fazer transferência, não sei como fazer transaction pra garantir que as 2 operações 
+        //ocorram ou não, de forma dependente.
+        Cliente[] c = new Cliente[2];
+        return c;
+    }
+    
     public static Cliente withdrawMoney(int numero, double value) {
         try {
             PreparedStatement p = connection.prepareStatement("SELECT * FROM cliente WHERE numero = ?");

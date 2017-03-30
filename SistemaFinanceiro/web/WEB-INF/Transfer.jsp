@@ -9,9 +9,24 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Sistema Financeiro - Transferência Bancária</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div class="container">
+            <header>
+                <h1>Transferência</h1>
+            </header>
+            <div>
+                <form method="POST" action="Transfer">
+                    <p>Insira o número da conta a ser retirado o dinheiro:</p>
+                    <p><input type="text" name="numero1"/>
+                    <p>Insira o número da conta para ser depositado o dinheiro:</p>
+                    <p><input type="text" name="numero2"/>
+                    <p>Qual o valor que deseja transferir?</p>
+                    <p><input type="text" name="saldo"/>
+                    <p><input type="submit" value="TRANSFERIR"></input></p>
+                </form>               
+            </div>
+        </div>
     </body>
 </html>

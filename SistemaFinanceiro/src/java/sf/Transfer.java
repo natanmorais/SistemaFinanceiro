@@ -8,6 +8,7 @@ package sf;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,19 +31,17 @@ public class Transfer extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Transfer</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Transfer at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        int numero1 = Integer.parseInt(request.getParameter("numero1"));
+        int numero2 = Integer.parseInt(request.getParameter("numero2"));
+        double valor = Double.parseDouble(request.getParameter("saldo"));
+        Cliente[] c = Repositorio.transferMoney(numero1, numero2, valor);
+        String address = "/WEB-INF/TransferResponse.jsp";
+        RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+        String resposta = "<p><h3>Sua transferência foi executada!</h3></p>"
+                + "<p>" + c[0].getNome() + ", o valor de R$" + valor + " serão depositados para " 
+                + c[1].getNome() + " o mais rápido possível</p>";
+        request.setAttribute("TransferResponse", resposta);
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
