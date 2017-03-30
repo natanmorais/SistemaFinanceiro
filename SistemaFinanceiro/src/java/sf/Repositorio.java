@@ -35,6 +35,28 @@ public class Repositorio {
         }
         return null;
     }
+    
+    public static Cliente depositMoney(int numero, double value) {
+        try {
+            PreparedStatement p = connection.prepareStatement("SELECT * FROM cliente WHERE numero = ?");
+            p.setInt(1, numero);
+            ResultSet rs = p.executeQuery();
+            if (rs != null && rs.next()) {
+                double novoSaldo = value;
+                Cliente c = new Cliente(rs.getInt(1), rs.getString(2), rs.getDouble(3));
+                novoSaldo += c.getSaldo();
+                p.close();
+                p = connection.prepareStatement("UPDATE cliente SET saldo = ? WHERE numero = ?");
+                p.setDouble(1, novoSaldo);
+                p.setInt(2, numero);
+                p.executeUpdate();
+                return c;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 
     public static Cliente criarConta(String nome, double saldo) {
         int numero = -1;
