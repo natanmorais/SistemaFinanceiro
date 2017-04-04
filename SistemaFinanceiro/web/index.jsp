@@ -40,6 +40,9 @@
                     <span class="opcao">
                         <input name="operation" class="uk-radio" type="radio" value="withdraw">Saque</input>
                     </span>
+                    <span class="opcao">
+                        <input name="operation" class="uk-radio" type="radio" value="extrato">Extrato</input>
+                    </span>
                 </div>
                 <input type="submit" value="Proceder" class="uk-button uk-button-default uk-button-primary"></input>
             </form>

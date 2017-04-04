@@ -5,6 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.transaction.Transaction;
 
 public class Repositorio {
@@ -68,6 +73,8 @@ public class Repositorio {
                 c[1] = new Cliente(rs.getInt(1), rs.getString(2), rs.getDouble(3));
             }
             p.close();
+            connection.setAutoCommit(false);
+            criarEntradaNoExtrato(TRANSFER_TYPE, envia, recebe, valor);
             return c;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -90,6 +97,7 @@ public class Repositorio {
                 p.setDouble(1, novoSaldo);
                 p.setInt(2, numero);
                 p.executeUpdate();
+                criarEntradaNoExtrato(WITHDRAW_TYPE, numero, 0, value);
                 return c;
             }
         } catch (SQLException ex) {
@@ -112,6 +120,7 @@ public class Repositorio {
                 p.setDouble(1, novoSaldo);
                 p.setInt(2, numero);
                 p.executeUpdate();
+                criarEntradaNoExtrato(DEPOSIT_TYPE, numero, 0, value);
                 return c;
             }
         } catch (SQLException ex) {
@@ -151,5 +160,60 @@ public class Repositorio {
         }
         System.out.println("Saindo com null");
         return null;
+    }
+
+    //create table extrato (id serial, tipo int, c1 int, c2 int, valor float);
+    public static final int BALANCE_TYPE = 1;
+    public static final int DEPOSIT_TYPE = 2;
+    public static final int TRANSFER_TYPE = 3;
+    public static final int WITHDRAW_TYPE = 4;
+
+    public static List<Extrato> verExtrato(int numero) {
+        List<Extrato> extratos = new ArrayList<>();
+        try {
+            PreparedStatement p = connection.prepareStatement("select * from extrato e where e.c1 = ?");
+            p.setInt(1, numero);
+            ResultSet rs = p.executeQuery();
+            if (rs != null && rs.next()) {
+                do {
+                    int tipo = rs.getInt(2);
+                    String c1 = null, c2 = null;
+                    if (tipo == TRANSFER_TYPE) {
+                        c2 = getCliente(rs.getInt(4)).getNome();
+                    }
+                    c1 = getCliente(rs.getInt(3)).getNome();
+                    double valor = rs.getDouble(5);
+                    long data = rs.getLong(6);
+                    extratos.add(new Extrato(tipo, c1, c2, valor, data));
+                } while (rs.next());
+            }
+            return extratos;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void criarEntradaNoExtrato(int tipo, int cliente1, int cliente2, double valor) {
+        try {
+            PreparedStatement p = connection.prepareStatement("INSERT INTO extrato (tipo, c1, c2, valor, data) VALUES(?, ?, ?, ?, ?)");
+            p.setInt(1, tipo);
+            p.setInt(2, cliente1);
+            p.setDouble(4, valor);
+            p.setLong(5, System.currentTimeMillis());
+            //Apenas 1 cliente.
+            if (tipo == BALANCE_TYPE || tipo == DEPOSIT_TYPE || tipo == WITHDRAW_TYPE) {
+                p.setNull(3, Types.DOUBLE);
+            } else if (tipo == TRANSFER_TYPE) {
+                p.setInt(3, cliente2);
+            } else {
+                return;
+            }
+            p.executeUpdate();
+            p.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
     }
 }

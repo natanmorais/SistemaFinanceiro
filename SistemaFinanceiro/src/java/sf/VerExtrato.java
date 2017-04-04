@@ -7,6 +7,7 @@ package sf;
  */
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author tiago
  */
-public class OpPicker extends HttpServlet {
+public class VerExtrato extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,37 +31,35 @@ public class OpPicker extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Repositorio.init("postgres", "admin");
-        String op = request.getParameter("operation");
-        try (PrintWriter out = response.getWriter()) {
-            out.println(op);
-
-            String address = "";
-
-            switch (op) {
-                case "create-account":
-                    address = "/WEB-INF/createAccount.jsp";
-                    break;
-                case "balance":
-                    address = "/WEB-INF/Balance.jsp";
-                    break;
-                case "transfer":
-                    address = "/WEB-INF/Transfer.jsp";
-                    break;
-                case "withdraw":
-                    address = "/WEB-INF/Withdraw.jsp";
-                    break;
-                case "deposit":
-                    address = "/WEB-INF/Deposit.jsp";
-                    break;
-                case "extrato":
-                    address = "/WEB-INF/Extrato.jsp";
-                    break;
-            }
-
+        int numero = Integer.parseInt("0" + request.getParameter("numero"));
+        Cliente c = Repositorio.getCliente(numero);
+        List<Extrato> e = Repositorio.verExtrato(numero);
+        if (e == null) {
+            String address = "/WEB-INF/ErrorPage.html";
             RequestDispatcher dispatcher = request.getRequestDispatcher(address);
             dispatcher.forward(request, response);
+            return;
         }
+        String address = "/WEB-INF/ExtratoResponse.jsp";
+        RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+        String resposta = "<p><h3>Olá " + c.getNome() + ", ashaBank agradece sua visita</h3></p>"
+                + "<p>O extrato da sua conta é:</p>";
+        resposta += "<div  class=\"extrato\">";
+        for(Extrato ex : e){
+            resposta += "<p>";
+            resposta += "Às <b>" + ex.getDataFormatada() + "</b>";
+            if(ex.getTipo() == Repositorio.DEPOSIT_TYPE){
+                resposta += String.format(" um Depósito de R$%.2f", ex.getValor());
+            }else if(ex.getTipo() == Repositorio.TRANSFER_TYPE){
+                resposta += String.format(" uma Transferência de R$%.2f para a conta do(a) <i>%s</i>", ex.getValor(), ex.getCliente2());
+            }else if(ex.getTipo() == Repositorio.WITHDRAW_TYPE) {
+                resposta += String.format(" um Saque de R$%.2f", ex.getValor());
+            }
+            resposta += " foi realizado.</p>";
+        }
+        resposta += "</div>";
+        request.setAttribute("ExtratoResponse", resposta);
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

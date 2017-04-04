@@ -16,6 +16,10 @@
         <servlet-name>OpPicker</servlet-name>
         <servlet-class>sf.OpPicker</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VerExtrato</servlet-name>
+        <servlet-class>sf.VerExtrato</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Balance</servlet-name>
         <url-pattern>/Balance</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>OpPicker</servlet-name>
         <url-pattern>/OpPicker</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerExtrato</servlet-name>
+        <url-pattern>/VerExtrato</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
