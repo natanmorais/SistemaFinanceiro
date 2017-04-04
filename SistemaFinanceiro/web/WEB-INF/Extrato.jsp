@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Sistema Financeiro - Consultar Saldo</title>
+        <title>Sistema Financeiro - Extrato</title>
         <link rel="stylesheet" href="bootstrap.min.css" />
         <link rel="stylesheet" href="uikit.min.css" />
         <link rel="stylesheet" href="style.css" />

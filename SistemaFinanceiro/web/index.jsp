@@ -17,7 +17,7 @@
     </head>
     <body style="width: 100%; height: 100%">
         <div class="parte-superior fundo-colorido">
-            <h1>AshaBank</h1>
+            <h1>ashaBank</h1>
         </div>
         <div class="parte-inferior">
 

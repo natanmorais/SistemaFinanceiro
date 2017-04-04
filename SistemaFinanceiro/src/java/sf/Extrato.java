@@ -18,20 +18,12 @@ public class Extrato {
         this.tipo = tipo;
     }
 
-    public String getCliente1() {
-        return cliente1;
+    public String getConta() {
+        return conta;
     }
 
-    public void setCliente1(String cliente1) {
-        this.cliente1 = cliente1;
-    }
-
-    public String getCliente2() {
-        return cliente2;
-    }
-
-    public void setCliente2(String cliente2) {
-        this.cliente2 = cliente2;
+    public void setConta(String conta) {
+        this.conta = conta;
     }
 
     public double getValor() {
@@ -51,8 +43,7 @@ public class Extrato {
     }
     
     private int tipo;
-    private String cliente1;
-    private String cliente2;
+    private String conta;
     private double valor;
     private long data;
     
@@ -60,10 +51,9 @@ public class Extrato {
         
     }
 
-    public Extrato(int tipo, String cliente1, String cliente2, double valor, long data) {
+    public Extrato(int tipo, String conta, double valor, long data) {
         this.tipo = tipo;
-        this.cliente1 = cliente1;
-        this.cliente2 = cliente2;
+        this.conta = conta;
         this.valor = valor;
         this.data = data;
     }

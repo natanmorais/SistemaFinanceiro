@@ -49,11 +49,11 @@ public class VerExtrato extends HttpServlet {
             resposta += "<p>";
             resposta += "Às <b>" + ex.getDataFormatada() + "</b>";
             if(ex.getTipo() == Repositorio.DEPOSIT_TYPE){
-                resposta += String.format(" um Depósito de R$%.2f", ex.getValor());
+                resposta += String.format(" - DEPÓSITO: R$%.2f", ex.getValor());
             }else if(ex.getTipo() == Repositorio.TRANSFER_TYPE){
-                resposta += String.format(" uma Transferência de R$%.2f para a conta do(a) <i>%s</i>", ex.getValor(), ex.getCliente2());
+                resposta += String.format(" - TRANSFERÊNCIA: R$%.2f", ex.getValor());
             }else if(ex.getTipo() == Repositorio.WITHDRAW_TYPE) {
-                resposta += String.format(" um Saque de R$%.2f", ex.getValor());
+                resposta += String.format(" - SAQUE: R$%.2f", ex.getValor());
             }
             resposta += " foi realizado.</p>";
         }
