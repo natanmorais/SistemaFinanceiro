@@ -15,18 +15,24 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <div class="container">
-            <header>
-                <h1 class="text-center">Saldo</h1>
-            </header>
-            <div class="col-md-6 col-md-offset-3">
-                <form method="POST" action="Balance">
-                    <p>Insira o número da conta:</p>
-                    <p><input id="numero" class="uk-input"type="text" name="numero"/>
-                    <p><input class="uk-button uk-button-default uk-button-primary" type="submit" value="CONSULTAR"></input></p>
-                </form>               
-            </div>
+        <div class="parte-esquerda">
 
         </div>
+        <div class="parte-direita fundo-colorido">
+            <h1>Saldo</h1>
+        </div>
+        <div class="parte-central">
+            <form method="POST" action="Balance">
+                <div class="opcoes">
+                    <span>
+                        <p>Insira o número da conta:</p>
+                    </span>
+                    <span class="opcao">
+                        <input id="numero" class="uk-input"type="text" name="numero"/>
+                    </span>
+                </div>
+                <input class="uk-button uk-button-default uk-button-primary" type="submit" value="CONSULTAR"></input>
+            </form>
+        </div>    
     </body>
 </html>

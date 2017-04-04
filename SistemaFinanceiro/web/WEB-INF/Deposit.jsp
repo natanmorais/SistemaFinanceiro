@@ -15,19 +15,30 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <div class="container">
-            <header>
-                <h1 class="text-center">Depósito</h1>
-            </header>
-            <div class="col-md-6 col-md-offset-3">
-                <form method="POST" action="Deposit">
-                    <p>Insira o número da conta recebedora:</p>
-                    <p><input class="uk-input" type="text" name="numero"/>
-                    <p>Qual o valor que deseja depositar?</p>
-                    <p><input class="uk-input" type="text" name="saldo"/>
-                    <p><input type="submit" class="uk-button uk-button-default uk-button-primary" value="DEPOSITAR"></input></p>
-                </form>               
-            </div>
+        <div class="parte-esquerda">
+
         </div>
+        <div class="parte-direita fundo-colorido">
+            <h1 class="text-center">Depósito</h1>
+        </div>
+        <div class="parte-central">
+            <form method="POST" action="Deposit">
+                <div class="opcoes">
+                    <span>
+                        <p>Insira o número da conta recebedora:</p>
+                    </span>
+                    <span class="opcao">
+                        <input class="uk-input" type="text" name="numero"/>
+                    </span>
+                    <span>
+                        <p>Qual o valor que deseja depositar?</p>
+                    </span>
+                    <span class="opcao">
+                        <p><input class="uk-input" type="text" name="saldo"/>
+                    </span>
+                </div>
+                <input type="submit" class="uk-button uk-button-default uk-button-primary" value="DEPOSITAR"></input>
+            </form> 
+        </div>       
     </body>
 </html>

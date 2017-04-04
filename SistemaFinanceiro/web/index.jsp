@@ -15,25 +15,34 @@
 
         <title>Sistema Financeiro</title>        
     </head>
-    <body>
-        <div class="container">
-            <header>
-                <h1 class="text-center">ashaBank</h1>
-            </header>
-            <div class="col-md-6 col-md-offset-3">
-                <form action="OpPicker">
-                    <div class="operations uk-card">
-                        <input name="operation" class="uk-radio" type="radio" value="create-account"> Create Account</input></br>
-                        <input name="operation" class="uk-radio" type="radio" value="balance"> Balance</input></br>
-                        <input name="operation" class="uk-radio" type="radio" value="deposit"> Deposit</input></br>
-                        <input name="operation" class="uk-radio" type="radio" value="transfer"> Transfer</input></br>
-                        <input name="operation" class="uk-radio" type="radio" value="withdraw"> Withdraw</input>
-                    </div>
-                    </br>
-                    </br>
-                    <input type="submit" value="Confirm" class="uk-button uk-button-default uk-button-primary"></input>
-                </form>
-            </div>
+    <body style="width: 100%; height: 100%">
+        <div class="parte-superior fundo-colorido">
+            <h1>AshaBank</h1>
         </div>
+        <div class="parte-inferior">
+
+        </div>
+        <div class="parte-central">
+            <form action="OpPicker">
+                <div class="opcoes">
+                    <span class="opcao">
+                        <input name="operation" class="uk-radio" type="radio" value="create-account">Criar Conta</input>
+                    </span>
+                    <span class="opcao">
+                        <input name="operation" class="uk-radio" type="radio" value="balance">Saldo</input>
+                    </span>
+                    <span class="opcao">
+                        <input name="operation" class="uk-radio" type="radio" value="deposit">Depósito</input>
+                    </span>
+                    <span class="opcao">
+                        <input name="operation" class="uk-radio" type="radio" value="transfer">Transferência</input>
+                    </span>
+                    <span class="opcao">
+                        <input name="operation" class="uk-radio" type="radio" value="withdraw">Saque</input>
+                    </span>
+                </div>
+                <input type="submit" value="Proceder" class="uk-button uk-button-default uk-button-primary"></input>
+            </form>
+        </div>        
     </body>
 </html>

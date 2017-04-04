@@ -15,20 +15,30 @@
         <title>Sistema Financeiro - Criar Conta</title>
     </head>
     <body>
-        <div class="container">
-            <header>
-                <h1 class="text-center">Criar Conta</h1>
-            </header>
-            <div class="col-md-6 col-md-offset-3">
-                <form method="POST" action="CreateAccount">
-                    <p>Insira seu nome completo:</p>
-                    <p><input class="uk-input" type="text" name="nome"/>
-                    <p>Qual o valor que deseja depositar?</p>
-                    <p><input class="uk-input" type="text" name="saldo"/>
-                    <p><input  class="uk-button uk-button-default uk-button-primary" type="submit" value="CADASTRAR"></input></p>
-                </form>               
-            </div>
-            
+        <div class="parte-esquerda fundo-colorido">
+            <h1>Criar Conta</h1>                
         </div>
+        <div class="parte-direita">
+
+        </div>
+        <div class="parte-central">
+            <form method="POST" action="CreateAccount">
+                <div class="opcoes">
+                    <p>
+                        Insira seu nome completo:
+                    </p>
+                    <span class="opcao">
+                        <input class="uk-input" type="text" name="nome"/>
+                    </span>
+                    <p>
+                        Qual o valor que deseja depositar?
+                    </p>
+                    <span class="opcao">
+                        <input class="uk-input" type="text" name="saldo"/>
+                    </span>
+                </div>
+                <input  class="uk-button uk-button-default uk-button-primary" type="submit" value="CADASTRAR"></input>
+            </form> 
+        </div>        
     </body>
 </html>

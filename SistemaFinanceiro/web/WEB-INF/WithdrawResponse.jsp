@@ -10,9 +10,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>ashaBank</title>
-    </head>
+        <link rel="stylesheet" href="bootstrap.min.css" />
+        <link rel="stylesheet" href="uikit.min.css" />
+        <link rel="stylesheet" href="style.css" /></head>
     <body>
-        <h1>${WithdrawResponse}</h1>
-        <div><a href="index.jsp">Voltar</a></div>
+        <div class="parte-central">
+            <div class="opcoes">
+                <h1>${WithdrawResponse}</h1>
+                <div><a href="index.jsp">Voltar</a></div>
+            </div>
+        </div>
     </body>
 </html>

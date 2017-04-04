@@ -15,21 +15,35 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <div class="container">
-            <header>
-                <h1 class="text-center">Transferência</h1>
-            </header>
-            <div class="col-md-6 col-md-offset-3">
-                <form method="POST" action="Transfer">
-                    <p>Insira o número da conta a ser retirado o dinheiro:</p>
-                    <p><input class="uk-input" type="text" name="numero1"/>
-                    <p>Insira o número da conta para ser depositado o dinheiro:</p>
-                    <p><input class="uk-input" type="text" name="numero2"/>
-                    <p>Qual o valor que deseja transferir?</p>
-                    <p><input class="uk-input" type="text" name="saldo"/>
-                    <p><input type="submit"  class="uk-button uk-button-default uk-button-primary" value="TRANSFERIR"></input></p>
-                </form>               
-            </div>
+        <div class="parte-esquerda fundo-colorido">
+            <h1>Transferência</h1>
         </div>
+        <div class="parte-direita">
+        </div>
+        <div class="parte-central">
+            <form method="POST" action="Transfer">
+                <div class="opcoes">
+                    <span>
+                        <p>Insira o número da conta a ser retirado o dinheiro:</p>
+                    </span>
+                    <span class="opcao">
+                        <input class="uk-input" type="text" name="numero1"/>
+                    </span>
+                    <span>
+                        <p>Insira o número da conta para ser depositado o dinheiro:</p>
+                    </span>
+                    <span class="opcao">
+                        <input class="uk-input" type="text" name="numero2"/>
+                    </span>
+                    <span>
+                        <p>Qual o valor que deseja transferir?</p>
+                    </span>
+                    <span class="opcao">
+                        <input class="uk-input" type="text" name="saldo"/>
+                    </span>
+                </div>
+                <input type="submit"  class="uk-button uk-button-default uk-button-primary" value="TRANSFERIR"></input>
+            </form> 
+        </div>        
     </body>
 </html>

@@ -30,7 +30,7 @@ public class OpPicker extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Repositorio.init("postgres", "senha");
+        Repositorio.init("postgres", "admin");
         String op = request.getParameter("operation");
         try (PrintWriter out = response.getWriter()) {
             out.println(op);

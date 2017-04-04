@@ -1,1 +1,103 @@
-.operations {border: 1px solid #CCC; border-radius: 5px; display: block; padding: 20px;}
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+
+body, html, .corpo {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    align-content: center;
+}
+
+.parte-inferior, .parte-superior {
+    width: 100%;
+    height: 50%;
+    position: absolute;
+}
+
+.parte-direita, .parte-esquerda {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+}
+
+.parte-superior {
+    background: #fac519;
+    top: 0px;
+}
+
+.parte-esquerda {
+    left: 0px;
+}
+
+.parte-inferior {
+    top: 50%;
+}
+
+.parte-direita {
+    right: 0px;
+}
+
+.fundo-colorido {
+    background: #fac519;
+}
+
+.parte-superior h1, .parte-esquerda h1,
+.parte-direita h1 {
+    color: white;
+    text-align: center;
+    width: 100%;
+    font-family: 'Indie Flower', cursive;
+    font-size: 80px;
+    font-weight: bold;
+    position: absolute;
+    top: 5px;
+}
+
+.parte-central {
+    display: block;
+    background-color: #FFF;
+    width: 40%;
+    position: absolute;
+    margin-left: -20%;
+    margin-top: -120px;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+}
+
+.opcao {
+    width: 100%;
+    display: block;
+    font-size: 18px;
+    margin-bottom: 3px;
+    padding: 5px;
+}
+
+.opcoes {
+    padding: 15px;
+}
+
+.opcao:hover {
+    background-color: #f4f4f4;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.opcao input[type="radio"] {
+    margin-right: 5px;
+    margin-bottom: 6px;
+}
+
+.opcao input[type="text"] {
+    text-align: center;
+}
+
+input[type="submit"] {
+    width: 100%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
